@@ -78,7 +78,7 @@ void childInputHandler() {
 			printf("0 time interval entered, interval defaulted to 5...\n");
 			delay = 5; //Set back to default 5 seconds
 		}
-		strcpy(buffer,""); //Clear buffer[] so we can do more processes with it
+		memset(buffer, 0, sizeof(buffer));  //Clear buffer[] so we can do more processes with it
         	int j = 0;
 		if(initial[0] == '-') { //If a negative delay was entered intially
 			for(int k = i+2; k < strlen(initial);k++) {  //Copy string not including the -_ delay
@@ -107,8 +107,8 @@ void childInputHandler() {
 		}
 	}
 
-        strcpy(initial,""); //Reset string buffers so they can be used next time
-        strcpy(buffer,"");
+		memset(initial, 0, sizeof(initial));  //Reset string buffers so they can be used next time
+		memset(buffer, 0, sizeof(buffer)); 		
 
 	alarmFlag = 1;  //Set the alarm to start printing readMessage continuously until ctrl+c/exit
 }
@@ -148,7 +148,7 @@ int main() {
 
 			printf("Enter a string in the form: (delay) (string) or (string)");
         		fgets(str,512,stdin); //Read in a new delay/string from stdin
-			if(DEBUG == 1) { printf("str: %s\n",str); }
+			if(DEBUG == 1) { printf("str: %s len: %ld\n",str, strlen(str)); }
 			write(fd[1],str,strlen(str));  //Write the read string to the pipe fd[1]
 
 			//Send the child process SIGFPE signal to specify it should read in new string from pipe fd[0]
