@@ -107,8 +107,8 @@ void childInputHandler() {
 		}
 	}
 
-		memset(initial, 0, sizeof(initial));  //Reset string buffers so they can be used next time
-		memset(buffer, 0, sizeof(buffer)); 		
+	memset(initial, 0, sizeof(initial));  //Reset string buffers so they can be used next time
+	memset(buffer, 0, sizeof(buffer)); 		
 
 	alarmFlag = 1;  //Set the alarm to start printing readMessage continuously until ctrl+c/exit
 }
